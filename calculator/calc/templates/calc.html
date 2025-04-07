@@ -1,0 +1,45 @@
+{% extends "layout.html" %}
+
+
+{% block content %}
+      
+      
+<body class="min-h-screen flex items-center justify-center bg-slate-700">
+    <div class="bg-slate-900 text-white p-6 rounded-md shadow-lg w-full max-w-sm">
+      <h1 class="bg-pink-300 text-black text-2xl font-bold text-center mb-6 rounded-md py-3">
+        Welcome to Calculator
+      </h1>
+  
+      <form method="POST">
+        {% csrf_token %}
+        <input type="text" name="num1" placeholder="Enter First Number"
+          class="w-full mb-3 p-2 rounded-md text-white" />
+  
+        <select name="operator" class="w-full mb-3 p-2 rounded-md text-white">
+          <option value="+">➕ Add</option>
+          <option value="-">➖ Subtract</option>
+          <option value="*">✖️ Multiply</option>
+          <option value="/">➗ Divide</option>
+        </select>
+  
+        <input type="text" name="num2" placeholder="Enter Second Number"
+          class="w-full mb-3 p-2 rounded-md text-white" />
+  
+        <button type="submit"
+          class="w-full bg-blue-500 hover:bg-blue-600 py-2 rounded text-white">Calculate</button>
+      </form>
+  
+      {% if result is not None %}
+        <p class="text-center mt-4 text-lg font-semibold">Result: {{ result }}</p>
+      {% endif %}
+      {% if error %}
+      <p class='text-lg text-red-600'>error:{{error}}</p>
+      {% endif %}
+
+ 
+    </div>
+  </body>
+  
+
+     
+{% endblock %}
